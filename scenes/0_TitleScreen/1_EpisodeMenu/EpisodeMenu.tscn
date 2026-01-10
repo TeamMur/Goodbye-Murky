@@ -1,0 +1,258 @@
+[gd_scene load_steps=6 format=3 uid="uid://2esoqd25qk6i"]
+
+[ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_m388d"]
+[ext_resource type="Script" uid="uid://c028pl6v05tb" path="res://scenes/0_TitleScreen/1_EpisodeMenu/episode_menu.gd" id="2_pmxvt"]
+[ext_resource type="Texture2D" uid="uid://54ekw3a34wie" path="res://assets/GW/room.png" id="3_c2kwl"]
+[ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="4_egvbw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iu5ar"]
+shader = ExtResource("4_egvbw")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(256, 103)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 0.0
+shader_parameter/static_noise_intensity = 0.050000002375
+shader_parameter/aberration = 0.01000004797499998
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.44
+shader_parameter/vignette_opacity = 0.478000022705
+
+[node name="EpisodeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m388d")
+script = ExtResource("2_pmxvt")
+
+[node name="Preview" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_c2kwl")
+expand_mode = 2
+
+[node name="ShaderRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_iu5ar")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+
+[node name="BottomRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 4.0
+offset_right = 78.5
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "ЭПИЗОДЫ"
+horizontal_alignment = 1
+
+[node name="EpisodeTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "🔏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -16.0
+offset_right = 179.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="ReturnButton" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "return"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_1" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_2" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#2"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_3" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#3"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_4" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#4"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_5" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#5"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_6" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#6"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_7" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#7"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_8" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#8"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_9" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#9"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LevelButton_10" type="Label" parent="ButtonContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "#10"
+horizontal_alignment = 1
+vertical_alignment = 2

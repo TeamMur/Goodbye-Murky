@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bfucvvr6j21ks"]
+
+[ext_resource type="FontFile" uid="uid://dgqlbcf41ng8u" path="res://assets/fonts/Faithful.ttf" id="1_sjpqb"]
+
+[resource]
+default_font = ExtResource("1_sjpqb")
+default_font_size = 16

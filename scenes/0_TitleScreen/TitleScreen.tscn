@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv2ak3akkk522"]
+
+[ext_resource type="Script" uid="uid://cotn28wku531t" path="res://scenes/0_TitleScreen/title_screen.gd" id="1_72jd3"]
+[ext_resource type="PackedScene" uid="uid://c3qghmm8xroso" path="res://scenes/0_TitleScreen/0_MainMenu/MainMenu.tscn" id="2_3p7vr"]
+[ext_resource type="PackedScene" uid="uid://bvrynu0sj71r7" path="res://scenes/0_TitleScreen/2_OptionsMenu/OptionsMenu.tscn" id="3_s55ay"]
+[ext_resource type="PackedScene" uid="uid://2esoqd25qk6i" path="res://scenes/0_TitleScreen/1_EpisodeMenu/EpisodeMenu.tscn" id="4_vx205"]
+
+[node name="TitleScreen" type="Node"]
+script = ExtResource("1_72jd3")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_3p7vr")]
+
+[node name="EpisodeMenu" parent="." instance=ExtResource("4_vx205")]
+visible = false
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_s55ay")]
+visible = false

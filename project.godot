@@ -1,0 +1,53 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Goodbye Murky"
+config/description="Копия Goodbye World
+"
+run/main_scene="uid://bv2ak3akkk522"
+config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="uid://bd5ocl4wu7ygn"
+
+[autoload]
+
+STFX="*res://singletons/STFX.tscn"
+STDB="*res://singletons/STDB.gd"
+ST_Options="*res://singletons/Options.gd"
+ST_AudioMaster="*res://singletons/AudioMaster.tscn"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=144
+window/size/resizable=false
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom="uid://bfucvvr6j21ks"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/langs/translations.ch.translation", "res://assets/langs/translations.en.translation", "res://assets/langs/translations.ru.translation")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0.02745098, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

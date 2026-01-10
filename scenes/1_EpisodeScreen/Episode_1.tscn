@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://cskkxp7khnm4a"]
+
+[ext_resource type="Texture2D" uid="uid://bkmsl75e5ymio" path="res://assets/GW/spr_room_bar_nes_0.png" id="1_0mquq"]
+[ext_resource type="Script" uid="uid://dtcxefthu20et" path="res://scenes/1_EpisodeScreen/episode_1.gd" id="1_2x5dk"]
+[ext_resource type="Script" uid="uid://baxgfrto3ehib" path="res://scenes/1_EpisodeScreen/typer.gd" id="1_3pp46"]
+[ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="2_a1qew"]
+[ext_resource type="PackedScene" uid="uid://4et77lr0bmg" path="res://scenes/2_DeviceScreen/Device.tscn" id="2_sl8wp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6jms7"]
+shader = ExtResource("2_a1qew")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(256, 144)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 0.0
+shader_parameter/static_noise_intensity = 0.0750000035625
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/vignette_opacity = 0.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bxya7"]
+size = Vector2(8, 8)
+
+[node name="Episode" type="Node"]
+script = ExtResource("1_2x5dk")
+
+[node name="Situation" type="TextureRect" parent="."]
+modulate = Color(0.2592937, 0.2592937, 0.2592937, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0mquq")
+expand_mode = 2
+
+[node name="ShaderRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6jms7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Typer" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -36.0
+offset_right = 144.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "cghrfh"
+autowrap_mode = 2
+horizontal_alignment = 1
+script = ExtResource("1_3pp46")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -15.0
+offset_right = 54.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Апрель, 2017-го"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Device" parent="." instance=ExtResource("2_sl8wp")]
+
+[node name="ContinueClue" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = -24.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("PlaceholderTexture2D_bxya7")
+
+[node name="Overlay" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,673 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvrynu0sj71r7"]
+
+[ext_resource type="Script" uid="uid://dcf0oaicdcgnu" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_menu.gd" id="1_ew6v6"]
+[ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_k0a12"]
+[ext_resource type="Script" uid="uid://d3xq14a84ff0w" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_language.gd" id="3_hqfvo"]
+[ext_resource type="Script" uid="uid://dwli0ag47eobo" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_graphics.gd" id="4_3qqtl"]
+[ext_resource type="Script" uid="uid://bclnf44y2mpm2" path="res://scenes/0_TitleScreen/2_OptionsMenu/audio_slider.gd" id="5_3qqtl"]
+[ext_resource type="Script" uid="uid://mhcs4msopp1" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_audio.gd" id="5_x8cpg"]
+[ext_resource type="Script" uid="uid://c1d68up24lyli" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_controls.gd" id="6_yv1yi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hqfvo"]
+size = Vector2(12, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qqtl"]
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8cpg"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="Theme" id="Theme_yv1yi"]
+HSlider/icons/grabber = SubResource("PlaceholderTexture2D_hqfvo")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_3qqtl")
+HSlider/styles/slider = SubResource("StyleBoxFlat_x8cpg")
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k0a12")
+script = ExtResource("1_ew6v6")
+
+[node name="BottomRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+
+[node name="ButtonContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -38.0
+offset_right = 70.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="LangButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "language"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GraphicsButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "graphics"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SoundButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "audio"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ControlsButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "controls"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ResetButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "reset options"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ReturnButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "return to main menu"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LanguageContainer" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -42.0
+offset_right = 114.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+script = ExtResource("3_hqfvo")
+
+[node name="RuButton" type="Label" parent="LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Русский"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EnButton" type="Label" parent="LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "English"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ChButton" type="Label" parent="LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "中國人"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ReturnButton" type="Label" parent="LanguageContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 7
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "НАЗАД"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AudioContainer" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -27.0
+offset_right = 80.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+script = ExtResource("5_x8cpg")
+
+[node name="SoundContainer" type="BoxContainer" parent="AudioContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+
+[node name="Title" type="Label" parent="AudioContainer/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Звук"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="AudioContainer/SoundContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_yv1yi")
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("5_3qqtl")
+audio_alias = "SFX"
+
+[node name="MusicContainer" type="BoxContainer" parent="AudioContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+
+[node name="Title" type="Label" parent="AudioContainer/MusicContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Музыка"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="AudioContainer/MusicContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_yv1yi")
+max_value = 1.0
+step = 0.1
+value = 0.5
+script = ExtResource("5_3qqtl")
+
+[node name="ReturnContainer" type="BoxContainer" parent="AudioContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+
+[node name="Title" type="Label" parent="AudioContainer/ReturnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "НАЗАД"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Space" type="Label" parent="AudioContainer/ReturnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="GraphicsContainer" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -38.0
+offset_right = 80.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+script = ExtResource("4_3qqtl")
+
+[node name="ModeContainer" type="BoxContainer" parent="GraphicsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="GraphicsContainer/ModeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Режим окна"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="GraphicsContainer/ModeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Окно"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SizeContainer" type="BoxContainer" parent="GraphicsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="GraphicsContainer/SizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Размер окна"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="GraphicsContainer/SizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "1280x720"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ShaderContainer" type="BoxContainer" parent="GraphicsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="GraphicsContainer/ShaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Эффект шейдера"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="GraphicsContainer/ShaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВКЛ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="NoiseContainer" type="BoxContainer" parent="GraphicsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="GraphicsContainer/NoiseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Эффект шума"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="GraphicsContainer/NoiseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВКЛ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ReturnContainer" type="BoxContainer" parent="GraphicsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="GraphicsContainer/ReturnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "НАЗАД"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="GraphicsContainer/ReturnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ControlsContainer" type="BoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -38.0
+offset_right = 111.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+script = ExtResource("6_yv1yi")
+
+[node name="UpContainer" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВВЕРХ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "↑"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer2" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВНИЗ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "↓"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer3" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВЛЕВО"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "←"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer4" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВПРАВО"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "→"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer5" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Подтвердить"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Z"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer6" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Отмена"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer7" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Инструкция"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Tab"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="UpContainer8" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/UpContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Пауза"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/UpContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Esc"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ReturnContainer" type="BoxContainer" parent="ControlsContainer"]
+layout_mode = 2
+focus_mode = 2
+
+[node name="Title" type="Label" parent="ControlsContainer/ReturnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Назад"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Value" type="Label" parent="ControlsContainer/ReturnContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TopRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 4.0
+offset_right = 78.5
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "options"
+horizontal_alignment = 1

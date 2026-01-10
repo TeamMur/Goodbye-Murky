@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=4 uid="uid://4dguscwpt33s"]
+
+[ext_resource type="Texture2D" uid="uid://d2qg2uvrxh3yu" path="res://assets/BF/bf.png" id="1_d0h8m"]
+[ext_resource type="Script" uid="uid://cdq2pdukcdw3f" path="res://scenes/2_DeviceScreen/yerchik.gd" id="2_6idme"]
+[ext_resource type="Texture2D" uid="uid://bj7q8xxfe2fuu" path="res://assets/GW/spr_ui_gb_0.png" id="3_7bocg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qtbac"]
+texture = ExtResource("1_d0h8m")
+texture_region_size = Vector2i(12, 12)
+0:0/0 = 0
+0:11/0 = 0
+0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -6, 6, -6, 6, 6, -6, 6)
+
+[sub_resource type="TileSet" id="TileSet_efd3v"]
+tile_size = Vector2i(12, 12)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qtbac")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7772"]
+atlas = ExtResource("1_d0h8m")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2n6jr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7772")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Level1" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 121.0
+offset_bottom = 97.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAsAAAABAAAAAAAAAAsAAAACAAAAAAAAAAsAAAADAAAAAAAAAAsAAAAJAAAAAAAAAAsAAAAIAAAAAAAAAAsAAAAHAAAAAAAAAAsAAAAAAAcAAAAAAAsAAAABAAcAAAAAAAsAAAACAAcAAAAAAAsAAAADAAcAAAAAAAsAAAAEAAcAAAAAAAsAAAAFAAcAAAAAAAsAAAAGAAcAAAAAAAsAAAAHAAcAAAAAAAsAAAAIAAcAAAAAAAsAAAAJAAcAAAAAAAsAAAAJAAYAAAAAAAsAAAAJAAUAAAAAAAsAAAAJAAQAAAAAAAsAAAAJAAMAAAAAAAsAAAAJAAIAAAAAAAsAAAAJAAEAAAAAAAsAAAAIAAEAAAAAAAsAAAAHAAEAAAAAAAsAAAADAAEAAAAAAAsAAAACAAEAAAAAAAsAAAABAAEAAAAAAAsAAAAAAAEAAAAAAAsAAAAAAAIAAAAAAAsAAAAAAAYAAAAAAAsAAAABAAYAAAAAAAsAAAACAAYAAAAAAAsAAAADAAYAAAAAAAsAAAAEAAYAAAAAAAsAAAAFAAYAAAAAAAsAAAAGAAYAAAAAAAsAAAAHAAYAAAAAAAsAAAAIAAYAAAAAAAsAAAAIAAUAAAAAAAsAAAAIAAQAAAAAAAsAAAAIAAMAAAAAAAsAAAAHAAMAAAAAAAsAAAAHAAIAAAAAAAsAAAABAAIAAAAAAAsAAAADAAIAAAAAAAsAAAAIAAIAAAAAAAsAAAAHAAUAAAAAAAsAAAAHAAQAAAAAAAsAAAACAAIAAAAAAAsAAAA=")
+tile_set = SubResource("TileSet_efd3v")
+
+[node name="Yerchik" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 36)
+sprite_frames = SubResource("SpriteFrames_2n6jr")
+animation = &"new_animation"
+centered = false
+script = ExtResource("2_6idme")
+
+[node name="RayCast" type="RayCast2D" parent="Yerchik"]
+position = Vector2(6, 6)
+target_position = Vector2(0, 0)
+
+[node name="Reference" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.050980393)
+position = Vector2(60, 48)
+texture = ExtResource("3_7bocg")

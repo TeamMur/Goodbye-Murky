@@ -1,0 +1,210 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3qghmm8xroso"]
+
+[ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_447kn"]
+[ext_resource type="Script" uid="uid://c0o40d5411xmw" path="res://scenes/0_TitleScreen/0_MainMenu/main_menu.gd" id="1_utw1h"]
+[ext_resource type="Script" uid="uid://cni5iu0ultswm" path="res://scenes/0_TitleScreen/0_MainMenu/river.gd" id="3_3r8sp"]
+[ext_resource type="Texture2D" uid="uid://cgt33ggxkekgv" path="res://assets/GW/spr_map_workspace_0.png" id="4_3r8sp"]
+[ext_resource type="Texture2D" uid="uid://pjkmc7asdd7m" path="res://assets/GW/title.png" id="4_bs6uq"]
+[ext_resource type="Texture2D" uid="uid://bkmsl75e5ymio" path="res://assets/GW/spr_room_bar_nes_0.png" id="5_3r8sp"]
+[ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="6_e6vs0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_beya5"]
+shader = ExtResource("6_e6vs0")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(256, 103)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 0.0
+shader_parameter/static_noise_intensity = 0.050000002375
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.44
+shader_parameter/vignette_opacity = 0.478000022705
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_447kn")
+script = ExtResource("1_utw1h")
+
+[node name="River" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_3r8sp")
+
+[node name="part1" type="TextureRect" parent="River"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_3r8sp")
+expand_mode = 2
+
+[node name="part2" type="TextureRect" parent="River"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_3r8sp")
+expand_mode = 2
+
+[node name="Timer" type="Timer" parent="River"]
+wait_time = 0.3
+autostart = true
+
+[node name="ShaderRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_beya5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+
+[node name="BottomRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+
+[node name="ButtonContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -21.0
+offset_right = 93.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ИГРАТЬ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EpisodeButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ЭПИЗОДЫ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="OptionsButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "НАСТРОЙКИ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ExitButton" type="Label" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 5
+focus_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "ВЫХОД"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -4.0
+offset_right = 256.0
+offset_bottom = 140.0
+texture = ExtResource("4_bs6uq")
+
+[node name="Copyright" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_right = 78.5
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "©2026 TeamMur"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = 34.0
+offset_right = -2.0
+offset_bottom = 46.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8980392, 0.8980392, 0.7411765, 1)
+theme_override_font_sizes/font_size = 12
+text = "v 0.0.0"
+horizontal_alignment = 2
