@@ -57,7 +57,7 @@ func _button_focus_grab(index = 0) -> void:
 
 func _on_button_focus_entered(button: Label) -> void:
 	button.add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 	#center()
 
 func _on_button_focus_exited(button) -> void:
@@ -98,7 +98,7 @@ func _on_return_button_pressed() -> void:
 	var title_screen = _get_title_screen()
 	if title_screen:
 		title_screen.change_screen_to_main_menu()
-		ST_AudioMaster.play_sfx(STDB.SE_MENU_BACK)
+		AudioPlayer.play_sfx(Database.SE_MENU_BACK)
 
 func _hide_containers():
 	for child in get_children():

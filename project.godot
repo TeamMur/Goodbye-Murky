@@ -23,10 +23,10 @@ config/icon="uid://bd5ocl4wu7ygn"
 
 [autoload]
 
-STFX="*res://singletons/STFX.tscn"
-STDB="*res://singletons/STDB.gd"
-ST_Options="*res://singletons/Options.gd"
-ST_AudioMaster="*res://singletons/AudioMaster.tscn"
+Effects="*res://singletons/Effects.tscn"
+Database="*res://singletons/Database.gd"
+Options="*res://singletons/Options.gd"
+AudioPlayer="*res://singletons/AudioPlayer.tscn"
 
 [display]
 

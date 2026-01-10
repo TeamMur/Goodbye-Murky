@@ -1,0 +1,202 @@
+{
+  "main": {
+    "id": "452f8266216e53c6",
+    "type": "split",
+    "children": [
+      {
+        "id": "59b93eca9d0a44c0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "62ad045dee50138f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "GoodbyeWorld.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GoodbyeWorld"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f826832f2c7e20e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "0d295efaeee07895",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "84c4edc56dbe9485",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7bc4e4f9c3574728",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "851ef98324d76063",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e75eeb695540b205",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bc4cf7fd62c9aaa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "12e6011b7bf3eb24",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "GoodbyeWorld.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for GoodbyeWorld"
+            }
+          },
+          {
+            "id": "41dd0b611ea093c1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "GoodbyeWorld.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from GoodbyeWorld"
+            }
+          },
+          {
+            "id": "b54460418a4c1c88",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "9b4caccab97f7ccb",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "2ad97b2a14b0eec1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "GoodbyeWorld.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of GoodbyeWorld"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "62ad045dee50138f",
+  "lastOpenFiles": [
+    "Goodbye Murky.md",
+    "img/Pasted image 20251217154234.png",
+    "img/Pasted image 20251217144202.png",
+    "img/Pasted image 20251217143452.png",
+    "img/Pasted image 20251217143441.png",
+    "img/Pasted image 20251217143421.png",
+    "img/Pasted image 20251217143416.png",
+    "img/Pasted image 20251217143232.png",
+    "img/Pasted image 20251217143219.png",
+    "img/Pasted image 20251217143207.png",
+    "img/Pasted image 20251217143000.png",
+    "img",
+    "GoodbyeWorld.md"
+  ]
+}

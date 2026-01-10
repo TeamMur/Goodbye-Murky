@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _choised() -> void:
 	_button_focus_grab()
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+	AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 
 
 #===
@@ -43,7 +43,7 @@ func _button_focus_grab(index = 0) -> void:
 
 func _on_button_focus_entered(button: Label) -> void:
 	button.add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 	#center()
 
 func _on_button_focus_exited(button) -> void:
@@ -63,7 +63,7 @@ func _on_return_button_pressed() -> void:
 	var menu = _get_menu()
 	if menu:
 		menu.return_to_initial_state()
-		ST_AudioMaster.play_sfx(STDB.SE_MENU_BACK)
+		AudioPlayer.play_sfx(Database.SE_MENU_BACK)
 
 func center():
 	var focused_object = get_viewport().gui_get_focus_owner()

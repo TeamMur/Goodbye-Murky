@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=4 uid="uid://dnhgyilps2nbw"]
 
-[ext_resource type="Texture2D" uid="uid://d2qg2uvrxh3yu" path="res://assets/BF/bf.png" id="1_eiqfe"]
+[ext_resource type="Texture2D" uid="uid://d2qg2uvrxh3yu" path="res://assets/minigame/bf.png" id="1_eiqfe"]
 [ext_resource type="Script" uid="uid://cdq2pdukcdw3f" path="res://scenes/2_DeviceScreen/yerchik.gd" id="2_1foh5"]
-[ext_resource type="Texture2D" uid="uid://bj7q8xxfe2fuu" path="res://assets/GW/spr_ui_gb_0.png" id="3_kjcrp"]
+[ext_resource type="Texture2D" uid="uid://bj7q8xxfe2fuu" path="res://assets/TEMP/gameboy/spr_ui_gb_0.png" id="3_kjcrp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qtbac"]
 texture = ExtResource("1_eiqfe")

@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_k0a12"]
 [ext_resource type="Script" uid="uid://d3xq14a84ff0w" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_language.gd" id="3_hqfvo"]
 [ext_resource type="Script" uid="uid://dwli0ag47eobo" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_graphics.gd" id="4_3qqtl"]
-[ext_resource type="Script" uid="uid://bclnf44y2mpm2" path="res://scenes/0_TitleScreen/2_OptionsMenu/audio_slider.gd" id="5_3qqtl"]
+[ext_resource type="Script" uid="uid://bclnf44y2mpm2" path="res://scripts/audio_slider.gd" id="5_3qqtl"]
 [ext_resource type="Script" uid="uid://mhcs4msopp1" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_audio.gd" id="5_x8cpg"]
 [ext_resource type="Script" uid="uid://c1d68up24lyli" path="res://scenes/0_TitleScreen/2_OptionsMenu/options_controls.gd" id="6_yv1yi"]
 
@@ -216,7 +216,7 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 script = ExtResource("5_3qqtl")
-audio_alias = "SFX"
+bus_name = "SFX"
 
 [node name="MusicContainer" type="BoxContainer" parent="AudioContainer"]
 layout_mode = 2

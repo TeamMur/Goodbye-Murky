@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://djuydmkfbukwa"]
 
 [ext_resource type="Script" uid="uid://dgyq4xi1redvp" path="res://scenes/1_EpisodeScreen/episode_2.gd" id="1_0188m"]
-[ext_resource type="Script" uid="uid://baxgfrto3ehib" path="res://scenes/1_EpisodeScreen/typer.gd" id="1_irn23"]
-[ext_resource type="Texture2D" uid="uid://dmu6d2oagulwa" path="res://assets/GW/spr_room_default_0.png" id="2_0188m"]
+[ext_resource type="Script" uid="uid://baxgfrto3ehib" path="res://scripts/typer.gd" id="1_irn23"]
+[ext_resource type="Texture2D" uid="uid://dmu6d2oagulwa" path="res://assets/TEMP/rooms/spr_room_default_0.png" id="2_0188m"]
 [ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="3_xa33y"]
 [ext_resource type="PackedScene" uid="uid://4et77lr0bmg" path="res://scenes/2_DeviceScreen/Device.tscn" id="4_nnsah"]
 

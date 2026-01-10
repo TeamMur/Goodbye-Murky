@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_447kn"]
 [ext_resource type="Script" uid="uid://c0o40d5411xmw" path="res://scenes/0_TitleScreen/0_MainMenu/main_menu.gd" id="1_utw1h"]
-[ext_resource type="Script" uid="uid://cni5iu0ultswm" path="res://scenes/0_TitleScreen/0_MainMenu/river.gd" id="3_3r8sp"]
-[ext_resource type="Texture2D" uid="uid://cgt33ggxkekgv" path="res://assets/GW/spr_map_workspace_0.png" id="4_3r8sp"]
-[ext_resource type="Texture2D" uid="uid://pjkmc7asdd7m" path="res://assets/GW/title.png" id="4_bs6uq"]
-[ext_resource type="Texture2D" uid="uid://bkmsl75e5ymio" path="res://assets/GW/spr_room_bar_nes_0.png" id="5_3r8sp"]
+[ext_resource type="Script" uid="uid://cni5iu0ultswm" path="res://scenes/0_TitleScreen/0_MainMenu/main_menu_river.gd" id="3_3r8sp"]
+[ext_resource type="Texture2D" uid="uid://cgt33ggxkekgv" path="res://assets/TEMP/rooms/spr_map_workspace_0.png" id="4_3r8sp"]
+[ext_resource type="Texture2D" uid="uid://pjkmc7asdd7m" path="res://assets/TEMP/ui/title.png" id="4_bs6uq"]
+[ext_resource type="Texture2D" uid="uid://bkmsl75e5ymio" path="res://assets/TEMP/rooms/spr_room_bar_nes_0.png" id="5_3r8sp"]
 [ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="6_e6vs0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_beya5"]

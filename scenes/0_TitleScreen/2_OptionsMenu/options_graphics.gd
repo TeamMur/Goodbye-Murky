@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _choised() -> void:
 	_button_focus_grab()
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+	AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 
 
 #===
@@ -52,7 +52,7 @@ func _button_focus_grab(index = 0) -> void:
 
 func _on_button_focus_entered(box: BoxContainer) -> void:
 	box.get_node("Title").add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 	#center()
 
 func _on_button_focus_exited(box: BoxContainer) -> void:
@@ -62,15 +62,15 @@ func _on_button_focus_exited(box: BoxContainer) -> void:
 var size_states = {
 	0: {
 		"title": "640x360",
-		"func": func(): ST_Options.make_window_small()
+		"func": func(): Options.make_window_small()
 	},
 	1: {
 		"title": "1280x720",
-		"func": func(): ST_Options.make_window_medium()
+		"func": func(): Options.make_window_medium()
 	},
 	2: {
 		"title": "1920x1080",
-		"func": func(): ST_Options.make_window_large()
+		"func": func(): Options.make_window_large()
 	}
 }
 
@@ -79,7 +79,7 @@ var current_size_state = 1
 func _on_size_container_pressed():
 	size_container.get_node("Value").grab_focus.call_deferred()
 	size_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 func _on_size_slider_gui_input(event):
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
@@ -88,17 +88,17 @@ func _on_size_slider_gui_input(event):
 		KEY_Z:
 			size_container.grab_focus.call_deferred()
 			size_container.get_node("Value").remove_theme_color_override("font_color")
-			ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 			size_states[current_size_state]["func"].call()
 		KEY_LEFT:
 			if current_size_state > 0:
 				current_size_state -= 1
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 				size_container.get_node("Value").text = size_states[current_size_state]["title"]
 		KEY_RIGHT:
 			if current_size_state < size_states.size() - 1:
 				current_size_state += 1
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 				size_container.get_node("Value").text = size_states[current_size_state]["title"]
 
 
@@ -107,11 +107,11 @@ func _on_size_slider_gui_input(event):
 var mode_states = {
 	0: {
 		"title": "Окно",
-		"func": func(): ST_Options.windowed_window()
+		"func": func(): Options.windowed_window()
 	},
 	1: {
 		"title": "Полный экран",
-		"func": func(): ST_Options.fullscreen_window()
+		"func": func(): Options.fullscreen_window()
 	}
 }
 
@@ -121,7 +121,7 @@ var current_mode_state = 0
 func _on_mode_container_pressed():
 	mode_container.get_node("Value").grab_focus.call_deferred()
 	mode_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 func _on_mode_slider_gui_input(event):
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
@@ -130,17 +130,17 @@ func _on_mode_slider_gui_input(event):
 		KEY_Z:
 			mode_container.grab_focus.call_deferred()
 			mode_container.get_node("Value").remove_theme_color_override("font_color")
-			ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 			mode_states[current_mode_state]["func"].call()
 		KEY_LEFT:
 			if current_mode_state > 0:
 				current_mode_state -= 1
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 				mode_container.get_node("Value").text = mode_states[current_mode_state]["title"]
 		KEY_RIGHT:
 			if current_mode_state < mode_states.size() - 1:
 				current_mode_state += 1
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 				mode_container.get_node("Value").text = mode_states[current_mode_state]["title"]
 
 
@@ -150,16 +150,16 @@ func _on_mode_slider_gui_input(event):
 func _on_shader_button_pressed():
 	shader_container.get_node("Value").grab_focus.call_deferred()
 	shader_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 var shader_states = {
 	"on": {
 		"title": "On",
-		"func": func(): STFX.abberation_on()
+		"func": func(): Effects.abberation_on()
 	},
 	"off": {
 		"title": "Off",
-		"func": func(): STFX.abberation_off()
+		"func": func(): Effects.abberation_off()
 	}
 }
 
@@ -168,11 +168,11 @@ var current_shader_state = "on"
 var noise_states = {
 	"on": {
 		"title": "On",
-		"func": func(): STFX.noise_on()
+		"func": func(): Effects.noise_on()
 	},
 	"off": {
 		"title": "Off",
-		"func": func(): STFX.noise_off()
+		"func": func(): Effects.noise_off()
 	}
 }
 
@@ -185,24 +185,24 @@ func _on_shader_slider_gui_input(event):
 		KEY_Z:
 			shader_container.grab_focus.call_deferred()
 			shader_container.get_node("Value").remove_theme_color_override("font_color")
-			ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 		KEY_LEFT:
 			if current_shader_state != "off":
 				shader_states["off"]["func"].call()
 				shader_container.get_node("Value").text = shader_states["off"]["title"]
 				current_shader_state = "off"
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 		KEY_RIGHT:
 			if current_shader_state != "on":
 				shader_states["on"]["func"].call()
 				shader_container.get_node("Value").text = shader_states["on"]["title"]
 				current_shader_state = "on"
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 func _on_noise_button_pressed():
 	noise_container.get_node("Value").grab_focus.call_deferred()
 	noise_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 func _on_noise_slider_gui_input(event):
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
@@ -211,25 +211,25 @@ func _on_noise_slider_gui_input(event):
 		KEY_Z:
 			noise_container.grab_focus.call_deferred()
 			noise_container.get_node("Value").remove_theme_color_override("font_color")
-			ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 		KEY_LEFT:
 			if current_noise_state != "off":
 				noise_states["off"]["func"].call()
 				noise_container.get_node("Value").text = noise_states["off"]["title"]
 				current_noise_state = "off"
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 		KEY_RIGHT:
 			if current_noise_state != "on":
 				noise_states["on"]["func"].call()
 				noise_container.get_node("Value").text = noise_states["on"]["title"]
 				current_noise_state = "on"
-				ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 func _on_return_button_pressed() -> void:
 	var menu = _get_menu()
 	if menu:
 		menu.return_to_initial_state()
-		ST_AudioMaster.play_sfx(STDB.SE_MENU_BACK)
+		AudioPlayer.play_sfx(Database.SE_MENU_BACK)
 
 func center():
 	var focused_object = get_viewport().gui_get_focus_owner()

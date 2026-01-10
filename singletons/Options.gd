@@ -1,19 +1,20 @@
-class_name OptionsMaster extends Node
+extends Node
 
 func _input(event: InputEvent) -> void:
 	_bind_window_size(event)
 
-#===locale
-##не входит в настройки по умолчанию
+func _ready() -> void:
+	set_music_volume_linear(0.5)
+	set_sound_volume_linear(0.5)
+
+#region locale (язык)
 func get_system_locale(): return OS.get_locale_language()
 
 func get_locale():        return TranslationServer.get_locale()
 func set_locale(locale):         TranslationServer.set_locale(locale)
 
-
-#===window mode
-
-
+#endregion
+#region window mode (режим отображения)
 func get_window_mode(): return DisplayServer.window_get_mode()
 func set_window_mode(mode):    DisplayServer.window_set_mode(mode)
 
@@ -22,8 +23,8 @@ func expand_window():     set_window_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 func windowed_window():   set_window_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 func fullscreen_window(): set_window_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
-
-#===window size
+#endregion
+#region window size (размер окна)
 var small_window_size = Vector2i(640, 360)
 var medium_window_size = Vector2i(1280, 720)
 var large_window_size = Vector2i(1920, 1080)
@@ -47,11 +48,8 @@ func make_window_large():
 
 func center_window(): get_window().move_to_center()
 
-##func shader_on
-##func noise_on
-
-
-#===audio
+#endregion
+#region audio (звук)
 
 var master_bus  = "Master"
 var sfx_bus     = "SFX"
@@ -60,13 +58,19 @@ var ambient_bus = "Ambient"
 
 func _get_bus_index(bus_name): return AudioServer.get_bus_index(bus_name)
 
-func get_bus_volume(bus_name): return AudioServer.get_bus_volume_linear(bus_name)
-func set_bus_volume(bus_name, value): AudioServer.set_bus_volume_linear(bus_name, value)
+func get_bus_volume_linear(bus_name): return AudioServer.get_bus_volume_linear(_get_bus_index(bus_name))
+func set_bus_volume_linear(bus_name, value): AudioServer.set_bus_volume_linear(_get_bus_index(bus_name), value)
 
-func mute_on(bus_name):  ST_AudioMaster.set_mute(bus_name, true)
-func mute_off(bus_name): ST_AudioMaster.set_mute(bus_name, false)
+func mute_on(bus_name):  AudioPlayer.set_mute(bus_name, true)
+func mute_off(bus_name): AudioPlayer.set_mute(bus_name, false)
 
-#===
+func set_master_volume_linear(value):  set_bus_volume_linear(master_bus, value)
+func set_music_volume_linear(value):   set_bus_volume_linear(music_bus, value)
+func set_sound_volume_linear(value):   set_bus_volume_linear(sfx_bus, value)
+func set_ambient_volume_linear(value): set_bus_volume_linear(ambient_bus, value)
+
+#endregion
+#region binds
 func _bind_lang(event):
 	if event.is_pressed() and not event.is_echo():
 		if event is InputEventKey and event.keycode == KEY_F1:
@@ -113,3 +117,4 @@ func _bind_window_size(event):
 				KEY_F3: make_window_large()
 				KEY_F4: windowed_window()
 				KEY_F5: fullscreen_window()
+#endregion

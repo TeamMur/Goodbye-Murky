@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_m388d"]
 [ext_resource type="Script" uid="uid://c028pl6v05tb" path="res://scenes/0_TitleScreen/1_EpisodeMenu/episode_menu.gd" id="2_pmxvt"]
-[ext_resource type="Texture2D" uid="uid://54ekw3a34wie" path="res://assets/GW/room.png" id="3_c2kwl"]
+[ext_resource type="Texture2D" uid="uid://54ekw3a34wie" path="res://assets/TEMP/rooms/room.png" id="3_c2kwl"]
 [ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="4_egvbw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iu5ar"]

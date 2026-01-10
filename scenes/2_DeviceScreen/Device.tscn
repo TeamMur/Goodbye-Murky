@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://4et77lr0bmg"]
 
 [ext_resource type="Script" uid="uid://c5uc1beykl5tn" path="res://scenes/2_DeviceScreen/device.gd" id="1_qt8av"]
-[ext_resource type="Texture2D" uid="uid://bj7q8xxfe2fuu" path="res://assets/GW/spr_ui_gb_0.png" id="1_y8jnm"]
-[ext_resource type="Texture2D" uid="uid://dg54n4ewmw8s6" path="res://assets/GW/spr_gb_bg_00_01_0.png" id="2_qt8av"]
+[ext_resource type="Texture2D" uid="uid://bj7q8xxfe2fuu" path="res://assets/TEMP/gameboy/spr_ui_gb_0.png" id="1_y8jnm"]
+[ext_resource type="Texture2D" uid="uid://dg54n4ewmw8s6" path="res://assets/TEMP/gameboy/spr_gb_bg_00_01_0.png" id="2_qt8av"]
 [ext_resource type="PackedScene" uid="uid://4dguscwpt33s" path="res://scenes/2_DeviceScreen/Level_1.tscn" id="3_2e3lo"]
 
 [node name="Device" type="Node2D"]

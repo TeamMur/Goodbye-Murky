@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _choised() -> void:
 	_button_focus_grab()
-	ST_AudioMaster.play_music("res://assets/TEMP/50na50.mp3")
+	AudioPlayer.play_music(Database.MAIN_MENU_MUSIC)
 
 
 #===
@@ -39,7 +39,7 @@ func _button_focus_grab(index = 0) -> void:
 func _on_button_focus_entered(button: Label) -> void:
 	button.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	button.add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
 func _on_button_focus_exited(button: Label) -> void:
 	button.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
@@ -47,18 +47,18 @@ func _on_button_focus_exited(button: Label) -> void:
 
 func _on_play_button_pressed() -> void:
 	print("play button pressed, launch 1 episode by default")
-	get_tree().change_scene_to_packed(STDB.EPISODE_1)
-	ST_AudioMaster.play_sfx(STDB.SE_START)
+	get_tree().change_scene_to_packed(Database.EPISODE_1)
+	AudioPlayer.play_sfx(Database.SE_START)
 
 func _on_episode_button_pressed() -> void:
 	var title_screen = _get_title_screen()
 	if title_screen: title_screen.change_screen_to_episode_menu()
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+	AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 
 func _on_options_button_pressed() -> void:
 	var title_screen = _get_title_screen()
 	if title_screen: title_screen.change_screen_to_options_menu()
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_OPEN)
+	AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()

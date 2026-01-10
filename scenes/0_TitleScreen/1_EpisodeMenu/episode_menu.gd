@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _choised() -> void:
 	_button_focus_grab(1)
-	ST_AudioMaster.music.stop()
+	AudioPlayer.music.stop()
 
 #===
 func _try_to_call(event, callable) -> void:
@@ -38,7 +38,7 @@ func _button_focus_grab(index = 0) -> void:
 func _on_button_focus_entered(button: Label) -> void:
 	button.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	button.add_theme_color_override("font_color", Color.BLACK)
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_HOVER)
+	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 	center()
 	
 	var index = button.get_index()
@@ -52,7 +52,7 @@ func _on_button_focus_exited(button) -> void:
 func _on_return_button_pressed() -> void:
 	var title_screen = _get_title_screen()
 	if title_screen: title_screen.change_screen_to_main_menu()
-	ST_AudioMaster.play_sfx(STDB.SE_MENU_BACK)
+	AudioPlayer.play_sfx(Database.SE_MENU_BACK)
 
 func _on_level_button_pressed(button) -> void:
 	var index = button.get_index()
@@ -60,9 +60,9 @@ func _on_level_button_pressed(button) -> void:
 	
 	if FileAccess.file_exists(episode_path):
 		get_tree().change_scene_to_file(episode_path)
-		ST_AudioMaster.play_sfx(STDB.SE_START)
+		AudioPlayer.play_sfx(Database.SE_START)
 	else:
-		ST_AudioMaster.play_sfx(STDB.SE_MENU_ERROR)
+		AudioPlayer.play_sfx(Database.SE_MENU_ERROR)
 
 
 #===
