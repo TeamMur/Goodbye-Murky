@@ -1,6 +1,24 @@
 class_name EpisodeMenu extends Node
 static var alias: String = "episode_menu"
 
+@onready var button_container: BoxContainer = $ButtonContainer
+@onready var return_button: Label = $ButtonContainer/ReturnButton
+@onready var preview: TextureRect = $Preview
+
+const image_1 = null
+const image_2 = preload("uid://bkmsl75e5ymio")
+const image_3 = preload("uid://dmu6d2oagulwa")
+const image_4 = preload("uid://b27oysvg2pppn")
+const image_5 = preload("uid://xmmy3psvd00s")
+const image_6 = preload("uid://54ekw3a34wie")
+
+var images = [image_1, image_2, image_3, image_4, image_5, image_6]
+var episode_pattern = "res://scenes/1_EpisodeScreen/Episode_%d.tscn"
+
+
+@onready var episode_title: Label = $EpisodeTitle
+var titles = ["", "Вступление", "Начало", "История", "Завершение", "Конец", "Бонус"]
+var unlocked_level = images.size()
 
 #===
 func _ready() -> void:
@@ -13,9 +31,9 @@ func _choised() -> void:
 	AudioPlayer.music.stop()
 
 #===
-func _try_to_call(event, callable) -> void:
+func _try_to_call(event: InputEvent, callable: Callable) -> void:
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
-	var is_accept_key = event is InputEventKey and event.keycode in [KEY_ENTER, KEY_Z] 
+	var is_accept_key = event.is_action("z")
 	if is_just_pressed and is_accept_key: callable.call()
 
 func _get_title_screen() -> TitleScreen:
@@ -81,23 +99,3 @@ func center():
 func _update_episode_title(index):
 	episode_title.text = titles[index] if index < titles.size() else "🔏"
 	if index >= unlocked_level: episode_title.text = "🔏"
-
-#===
-@onready var button_container: BoxContainer = $ButtonContainer
-@onready var return_button: Label = $ButtonContainer/ReturnButton
-@onready var preview: TextureRect = $Preview
-
-const image_1 = null
-const image_2 = preload("uid://bkmsl75e5ymio")
-const image_3 = preload("uid://dmu6d2oagulwa")
-const image_4 = preload("uid://b27oysvg2pppn")
-const image_5 = preload("uid://xmmy3psvd00s")
-const image_6 = preload("uid://54ekw3a34wie")
-
-var images = [image_1, image_2, image_3, image_4, image_5, image_6]
-var episode_pattern = "res://scenes/1_EpisodeScreen/Episode_%d.tscn"
-
-
-@onready var episode_title: Label = $EpisodeTitle
-var titles = ["", "Вступление", "Начало", "История", "Завершение", "Конец", "Бонус"]
-var unlocked_level = images.size()

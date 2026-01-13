@@ -1,18 +1,29 @@
+@tool
 class_name River extends Control
 static var alias: String = "river"
 
 
+@onready var part_1: TextureRect = $part1
+@onready var part_2: TextureRect = $part2
+
+@export_range(0.05, 1, 0.05) var update_time = 0.3
+@export_range(1, 8, 1) var move_range = 2
+
+var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+var current_image_index = 0
+
+var tween: Tween
+
+
+#tween
 func _ready() -> void:
-	_connect_signals()
+	_reset()
+	_update_images()
+	if not Engine.is_editor_hint():
+		_add_tween()
 
-
-#===
-func _connect_signals() -> void:
-	timer.timeout.connect(_on_timer_timeout)
-
-func _on_timer_timeout():
-	var new_position = position.x - 2
-	var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+func _move():
+	var new_position = position.x - move_range
 	
 	if new_position <= -viewport_width:
 		new_position = 0
@@ -25,20 +36,38 @@ func _on_timer_timeout():
 	
 	position.x = new_position
 
+#editor
+func _add_tween():
+	_kill_tween()
+	tween = create_tween().set_loops()
+	tween.tween_callback(_move).set_delay(update_time)
+
+func _kill_tween(): if tween: tween.kill(); tween = null
+
+func _update_tween():
+	_kill_tween()
+	call_deferred("_add_tween")
+
+func _reset():
+	position = Vector2.ZERO
 
 
-#===
-@onready var part_1: TextureRect = $part1
-@onready var part_2: TextureRect = $part2
+#setget vars 
+@export var images: Array[Texture2D]:
+	set(values): images = _set_images(values)
 
-@onready var timer: Timer = $Timer
+@export var move_in_editor: bool = false:
+	set(value):
+		if not Engine.is_editor_hint(): return
+		move_in_editor = value
+		if move_in_editor: call_deferred("_add_tween")
+		else: _kill_tween(); _reset()
 
-const image_1 = preload("uid://cgt33ggxkekgv")
-const image_2 = preload("uid://bkmsl75e5ymio")
-const image_3 = preload("uid://dmu6d2oagulwa")
-const image_4 = preload("uid://b27oysvg2pppn")
-const image_5 = preload("uid://xmmy3psvd00s")
-const image_6 = preload("uid://54ekw3a34wie")
+#setters and getters
+func _set_images(values):
+	if not values.is_empty():
+		if values[0] and part_1 and part_1.texture != values[0]: part_1.texture = values[0]
+		if values[1] and part_2 and part_2.texture != values[1]: part_2.texture = values[1]
+	return values
 
-var images = [image_1, image_2, image_3, image_4, image_5, image_6]
-var current_image_index = 1
+func _update_images(): images = images

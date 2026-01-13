@@ -30,9 +30,9 @@ func _choised() -> void:
 	_button_focus_grab()
 
 #===
-func _try_to_call(event, callable) -> void:
+func _try_to_call(event: InputEvent, callable: Callable) -> void:
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
-	var is_accept_key = event is InputEventKey and event.keycode in [KEY_ENTER, KEY_Z] 
+	var is_accept_key = event.is_action("z")
 	if is_just_pressed and is_accept_key: callable.call()
 
 func _get_title_screen() -> TitleScreen:
