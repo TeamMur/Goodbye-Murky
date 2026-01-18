@@ -18,13 +18,9 @@ func _choised() -> void:
 #===
 func _try_to_call(event, callable) -> void:
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
-	var is_accept_key = event is InputEventKey and event.keycode in [KEY_ENTER, KEY_Z] 
+	var is_accept_key = event.is_action("z")
 	if is_just_pressed and is_accept_key: callable.call()
 
-
-func _get_menu() -> OptionsMenu:
-	var menu = get_parent()
-	return menu if menu is OptionsMenu else null
 
 #===
 func _connect_signals() -> void:
@@ -44,20 +40,14 @@ func _button_focus_grab(index = 0) -> void:
 func _on_button_focus_entered(button: Label) -> void:
 	button.add_theme_color_override("font_color", Color.BLACK)
 	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-	#center()
+	center()
 
 func _on_button_focus_exited(button) -> void:
 	button.remove_theme_color_override("font_color")
 
-
-func _on_ru_button_pressed():
-	TranslationServer.set_locale("ru")
-
-func _on_en_button_pressed():
-	TranslationServer.set_locale("en")
-
-func _on_ch_button_pressed():
-	TranslationServer.set_locale("ch")
+func _on_ru_button_pressed(): TranslationServer.set_locale("ru")
+func _on_en_button_pressed(): TranslationServer.set_locale("en")
+func _on_ch_button_pressed(): TranslationServer.set_locale("ch")
 
 func _on_return_button_pressed() -> void:
 	var menu = _get_menu()
@@ -69,7 +59,13 @@ func center():
 	var focused_object = get_viewport().gui_get_focus_owner()
 	if not focused_object in get_children(): return
 	var index = focused_object.get_index()
-	var viewport_heigh = ProjectSettings.get_setting("display/window/size/viewport_height")
+	var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")/2
 	#работает только если все элементы равны по размеру
-	var pivot_offset = index*(focused_object.size.y + get_theme_constant("separation")) + focused_object.size.y/2
-	position.y = viewport_heigh/2.0 - pivot_offset
+	var p_offset = focused_object.size.y/2
+	if index: p_offset += index*(focused_object.size.y + get_theme_constant("separation"))
+	position.y = viewport_height - p_offset
+
+#getters
+func _get_menu() -> OptionsMenu:
+	var menu = get_parent()
+	return menu if menu is OptionsMenu else null

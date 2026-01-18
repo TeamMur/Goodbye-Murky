@@ -459,11 +459,11 @@ text = "↑"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer2" type="BoxContainer" parent="ControlsContainer"]
+[node name="DownContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer2"]
+[node name="Title" type="Label" parent="ControlsContainer/DownContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -473,7 +473,7 @@ text = "ВНИЗ"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer2"]
+[node name="Value" type="Label" parent="ControlsContainer/DownContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -483,11 +483,11 @@ text = "↓"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer3" type="BoxContainer" parent="ControlsContainer"]
+[node name="LeftContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer3"]
+[node name="Title" type="Label" parent="ControlsContainer/LeftContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -497,7 +497,7 @@ text = "ВЛЕВО"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer3"]
+[node name="Value" type="Label" parent="ControlsContainer/LeftContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -507,11 +507,11 @@ text = "←"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer4" type="BoxContainer" parent="ControlsContainer"]
+[node name="RightContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer4"]
+[node name="Title" type="Label" parent="ControlsContainer/RightContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -521,7 +521,7 @@ text = "ВПРАВО"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer4"]
+[node name="Value" type="Label" parent="ControlsContainer/RightContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -531,11 +531,11 @@ text = "→"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer5" type="BoxContainer" parent="ControlsContainer"]
+[node name="AcceptContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer5"]
+[node name="Title" type="Label" parent="ControlsContainer/AcceptContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -545,7 +545,7 @@ text = "Подтвердить"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer5"]
+[node name="Value" type="Label" parent="ControlsContainer/AcceptContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -555,11 +555,11 @@ text = "Z"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer6" type="BoxContainer" parent="ControlsContainer"]
+[node name="CancelContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer6"]
+[node name="Title" type="Label" parent="ControlsContainer/CancelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -569,7 +569,7 @@ text = "Отмена"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer6"]
+[node name="Value" type="Label" parent="ControlsContainer/CancelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -579,11 +579,11 @@ text = "X"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer7" type="BoxContainer" parent="ControlsContainer"]
+[node name="GuideContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer7"]
+[node name="Title" type="Label" parent="ControlsContainer/GuideContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -593,7 +593,7 @@ text = "Инструкция"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer7"]
+[node name="Value" type="Label" parent="ControlsContainer/GuideContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -603,11 +603,11 @@ text = "Tab"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="UpContainer8" type="BoxContainer" parent="ControlsContainer"]
+[node name="PauseContainer" type="BoxContainer" parent="ControlsContainer"]
 layout_mode = 2
 focus_mode = 2
 
-[node name="Title" type="Label" parent="ControlsContainer/UpContainer8"]
+[node name="Title" type="Label" parent="ControlsContainer/PauseContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
@@ -617,7 +617,7 @@ text = "Пауза"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Value" type="Label" parent="ControlsContainer/UpContainer8"]
+[node name="Value" type="Label" parent="ControlsContainer/PauseContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5

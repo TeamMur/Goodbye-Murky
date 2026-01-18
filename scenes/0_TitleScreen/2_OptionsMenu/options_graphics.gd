@@ -7,6 +7,7 @@ extends BoxContainer
 
 @onready var return_button: BoxContainer = $ReturnContainer
 
+
 #===
 func _ready() -> void:
 	_connect_signals()
@@ -19,27 +20,21 @@ func _choised() -> void:
 #===
 func _try_to_call(event, callable) -> void:
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
-	var is_accept_key = event is InputEventKey and event.keycode in [KEY_ENTER, KEY_Z] 
+	var is_accept_key = event.is_action("z")
 	if is_just_pressed and is_accept_key: callable.call()
 
 
-func _get_menu() -> OptionsMenu:
-	var menu = get_parent()
-	return menu if menu is OptionsMenu else null
-
 #===
 func _connect_signals() -> void:
-	size_container.gui_input.connect(_try_to_call.bind(_on_size_container_pressed))
-	size_container.get_node("Value").gui_input.connect(_on_size_slider_gui_input)
+	for container in get_children():
+		if container is BoxContainer and container != return_button:
+			container.gui_input.connect(_try_to_call.bind(_on_container_pressed.bind(container)))
 	
-	mode_container.gui_input.connect(_try_to_call.bind(_on_mode_container_pressed))
-	mode_container.get_node("Value").gui_input.connect(_on_mode_slider_gui_input)
+	size_container.get_node("Value").gui_input.connect(_on_window_slider_gui_input.bind(size_container))
+	mode_container.get_node("Value").gui_input.connect(_on_window_slider_gui_input.bind(mode_container))
 	
-	shader_container.gui_input.connect(_try_to_call.bind(_on_shader_button_pressed))
-	shader_container.get_node("Value").gui_input.connect(_on_shader_slider_gui_input)
-	
-	noise_container.gui_input.connect(_try_to_call.bind(_on_noise_button_pressed))
-	noise_container.get_node("Value").gui_input.connect(_on_noise_slider_gui_input)
+	shader_container.get_node("Value").gui_input.connect(_on_effect_slider_gui_input.bind(shader_container))
+	noise_container.get_node("Value").gui_input.connect(_on_effect_slider_gui_input.bind(noise_container))
 	
 	return_button.gui_input.connect(_try_to_call.bind(_on_return_button_pressed))
 	
@@ -58,172 +53,69 @@ func _on_button_focus_entered(box: BoxContainer) -> void:
 func _on_button_focus_exited(box: BoxContainer) -> void:
 	box.get_node("Title").remove_theme_color_override("font_color")
 
-
-var size_states = {
-	0: {
-		"title": "640x360",
-		"func": func(): Options.make_window_small()
-	},
-	1: {
-		"title": "1280x720",
-		"func": func(): Options.make_window_medium()
-	},
-	2: {
-		"title": "1920x1080",
-		"func": func(): Options.make_window_large()
-	}
-}
-
-var current_size_state = 1
-
-func _on_size_container_pressed():
-	size_container.get_node("Value").grab_focus.call_deferred()
-	size_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
+func _on_container_pressed(container):
+	container.get_node("Value").grab_focus.call_deferred()
+	container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
 	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
-func _on_size_slider_gui_input(event):
+#region window sliders
+func _on_window_slider_gui_input(event: InputEvent, container):
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
 	if not (is_just_pressed and event is InputEventKey): return
+	
+	var value_label: Label = container.get_node("Value")
+	var states = containers_states.get(container)
+	
 	match event.keycode:
-		KEY_Z:
-			size_container.grab_focus.call_deferred()
-			size_container.get_node("Value").remove_theme_color_override("font_color")
-			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
-			size_states[current_size_state]["func"].call()
-		KEY_LEFT:
-			if current_size_state > 0:
-				current_size_state -= 1
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-				size_container.get_node("Value").text = size_states[current_size_state]["title"]
-		KEY_RIGHT:
-			if current_size_state < size_states.size() - 1:
-				current_size_state += 1
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-				size_container.get_node("Value").text = size_states[current_size_state]["title"]
+		KEY_Z:     window_accept_option(container, value_label, states)
+		KEY_LEFT:  window_left_option(value_label, states)
+		KEY_RIGHT: window_right_option(value_label, states)
 
+func window_accept_option(container, value_label, states):
+	container.grab_focus.call_deferred()
+	value_label.remove_theme_color_override("font_color")
+	AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
+	
+	states[states["current_state"]]["func"].call()
 
+func window_left_option(value_label, states):
+	if states["current_state"] > 0:
+		states["current_state"] -= 1
+		AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
+		value_label.text = states[states["current_state"]]["title"]
 
+func window_right_option(value_label, states):
+	if states["current_state"] < states.size() - 2:
+		states["current_state"] += 1
+		AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
+		value_label.text = states[states["current_state"]]["title"]
 
-var mode_states = {
-	0: {
-		"title": "Окно",
-		"func": func(): Options.windowed_window()
-	},
-	1: {
-		"title": "Полный экран",
-		"func": func(): Options.fullscreen_window()
-	}
-}
-
-var current_mode_state = 0
-
-
-func _on_mode_container_pressed():
-	mode_container.get_node("Value").grab_focus.call_deferred()
-	mode_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-
-func _on_mode_slider_gui_input(event):
+#endregion
+#region effect sliders
+func _on_effect_slider_gui_input(event: InputEvent, container):
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
 	if not (is_just_pressed and event is InputEventKey): return
+	
+	var value_label: Label = container.get_node("Value")
+	var states = containers_states.get(container)
+	
 	match event.keycode:
-		KEY_Z:
-			mode_container.grab_focus.call_deferred()
-			mode_container.get_node("Value").remove_theme_color_override("font_color")
-			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
-			mode_states[current_mode_state]["func"].call()
-		KEY_LEFT:
-			if current_mode_state > 0:
-				current_mode_state -= 1
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-				mode_container.get_node("Value").text = mode_states[current_mode_state]["title"]
-		KEY_RIGHT:
-			if current_mode_state < mode_states.size() - 1:
-				current_mode_state += 1
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-				mode_container.get_node("Value").text = mode_states[current_mode_state]["title"]
+		KEY_Z:     effect_accept_option(container, value_label)
+		KEY_LEFT:  effect_change_option(value_label, states, "off")
+		KEY_RIGHT: effect_change_option(value_label, states, "on")
 
+func effect_accept_option(container, value_label):
+	container.grab_focus.call_deferred()
+	value_label.remove_theme_color_override("font_color")
 
+func effect_change_option(value_label, states, value):
+	if states["current_state"] != value:
+		states[value]["func"].call()
+		value_label.text = states[value]["title"]
+		states["current_state"] = value
+		AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
 
-
-
-func _on_shader_button_pressed():
-	shader_container.get_node("Value").grab_focus.call_deferred()
-	shader_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-
-var shader_states = {
-	"on": {
-		"title": "On",
-		"func": func(): Effects.abberation_on()
-	},
-	"off": {
-		"title": "Off",
-		"func": func(): Effects.abberation_off()
-	}
-}
-
-var current_shader_state = "on"
-
-var noise_states = {
-	"on": {
-		"title": "On",
-		"func": func(): Effects.noise_on()
-	},
-	"off": {
-		"title": "Off",
-		"func": func(): Effects.noise_off()
-	}
-}
-
-var current_noise_state = "on"
-
-func _on_shader_slider_gui_input(event):
-	var is_just_pressed = event.is_pressed() and not event.is_echo()
-	if not (is_just_pressed and event is InputEventKey): return
-	match event.keycode:
-		KEY_Z:
-			shader_container.grab_focus.call_deferred()
-			shader_container.get_node("Value").remove_theme_color_override("font_color")
-			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
-		KEY_LEFT:
-			if current_shader_state != "off":
-				shader_states["off"]["func"].call()
-				shader_container.get_node("Value").text = shader_states["off"]["title"]
-				current_shader_state = "off"
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-		KEY_RIGHT:
-			if current_shader_state != "on":
-				shader_states["on"]["func"].call()
-				shader_container.get_node("Value").text = shader_states["on"]["title"]
-				current_shader_state = "on"
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-
-func _on_noise_button_pressed():
-	noise_container.get_node("Value").grab_focus.call_deferred()
-	noise_container.get_node("Value").add_theme_color_override("font_color", Color.BLACK)
-	AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-
-func _on_noise_slider_gui_input(event):
-	var is_just_pressed = event.is_pressed() and not event.is_echo()
-	if not (is_just_pressed and event is InputEventKey): return
-	match event.keycode:
-		KEY_Z:
-			noise_container.grab_focus.call_deferred()
-			noise_container.get_node("Value").remove_theme_color_override("font_color")
-			AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
-		KEY_LEFT:
-			if current_noise_state != "off":
-				noise_states["off"]["func"].call()
-				noise_container.get_node("Value").text = noise_states["off"]["title"]
-				current_noise_state = "off"
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
-		KEY_RIGHT:
-			if current_noise_state != "on":
-				noise_states["on"]["func"].call()
-				noise_container.get_node("Value").text = noise_states["on"]["title"]
-				current_noise_state = "on"
-				AudioPlayer.play_sfx(Database.SE_MENU_HOVER)
+#endregion
 
 func _on_return_button_pressed() -> void:
 	var menu = _get_menu()
@@ -231,11 +123,54 @@ func _on_return_button_pressed() -> void:
 		menu.return_to_initial_state()
 		AudioPlayer.play_sfx(Database.SE_MENU_BACK)
 
+#===
 func center():
 	var focused_object = get_viewport().gui_get_focus_owner()
 	if not focused_object in get_children(): return
 	var index = focused_object.get_index()
-	var viewport_heigh = ProjectSettings.get_setting("display/window/size/viewport_height")
+	var viewport_height = ProjectSettings.get_setting("display/window/size/viewport_height")/2
 	#работает только если все элементы равны по размеру
-	var pivot_offset = index*(focused_object.size.y + get_theme_constant("separation")) + focused_object.size.y/2
-	position.y = viewport_heigh/2.0 - pivot_offset
+	var p_offset = focused_object.size.y/2
+	if index: p_offset += index*(focused_object.size.y + get_theme_constant("separation"))
+	position.y = viewport_height - p_offset
+
+
+#getters
+func _get_menu() -> OptionsMenu:
+	var menu = get_parent()
+	return menu if menu is OptionsMenu else null
+
+#region states
+@onready var containers_states = {
+	size_container:   size_states,
+	mode_container:   mode_states,
+	shader_container: shader_states,
+	noise_container:  noise_states
+}
+
+var size_states = {
+	"current_state": 1,
+	0: {"title": "640x360",   "func": func(): Options.make_window_small()},
+	1: {"title": "1280x720",  "func": func(): Options.make_window_medium()},
+	2: {"title": "1920x1080", "func": func(): Options.make_window_large()}
+}
+
+var mode_states = {
+	"current_state": 0,
+	0: {"title": "Окно",         "func": func(): Options.windowed_window()},
+	1: {"title": "Полный экран", "func": func(): Options.fullscreen_window()}
+}
+
+var shader_states = {
+	"current_state": "",
+	"on":  {"title": "On",   "func": func(): Effects.abberation_on()},
+	"off": {"title": "Off", "func": func(): Effects.abberation_off()}
+}
+
+var noise_states = {
+	"current_state": "",
+	"on":  {"title": "On",   "func": func(): Effects.noise_on()},
+	"off": {"title": "Off", "func": func(): Effects.noise_off()
+	}
+}
+#endregion
