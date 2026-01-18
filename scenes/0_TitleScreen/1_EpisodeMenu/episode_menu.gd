@@ -1,27 +1,16 @@
 class_name EpisodeMenu extends Node
 static var alias: String = "episode_menu"
 
+
 @onready var button_container: BoxContainer = $ButtonContainer
 @onready var return_button: Label = $ButtonContainer/ReturnButton
 @onready var preview: TextureRect = $Preview
-
-const image_1 = null
-const image_2 = preload("uid://bkmsl75e5ymio")
-const image_3 = preload("uid://dmu6d2oagulwa")
-const image_4 = preload("uid://b27oysvg2pppn")
-const image_5 = preload("uid://xmmy3psvd00s")
-const image_6 = preload("uid://54ekw3a34wie")
-
-var images = [image_1, image_2, image_3, image_4, image_5, image_6]
-var episode_pattern = "res://scenes/1_EpisodeScreen/Episode_%d.tscn"
-
-
 @onready var episode_title: Label = $EpisodeTitle
-var titles = ["", "Вступление", "Начало", "История", "Завершение", "Конец", "Бонус"]
-var unlocked_level = images.size()
+
 
 #===
 func _ready() -> void:
+	Savebase.last_unlocked_level = preview.images.size()
 	if get_tree().current_scene == self: _choised()
 	
 	_connect_signals()
@@ -30,15 +19,13 @@ func _choised() -> void:
 	_button_focus_grab(1)
 	AudioPlayer.music.stop()
 
+
 #===
 func _try_to_call(event: InputEvent, callable: Callable) -> void:
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
 	var is_accept_key = event.is_action("z")
 	if is_just_pressed and is_accept_key: callable.call()
 
-func _get_title_screen() -> TitleScreen:
-	var title_screen = get_parent()
-	return title_screen if title_screen is TitleScreen else null
 
 #===
 func _connect_signals() -> void:
@@ -50,6 +37,7 @@ func _connect_signals() -> void:
 		if button != return_button:
 			button.gui_input.connect(_try_to_call.bind(_on_level_button_pressed.bind(button)))
 
+
 func _button_focus_grab(index = 0) -> void:
 	button_container.get_child(index).grab_focus.call_deferred()
 
@@ -60,8 +48,8 @@ func _on_button_focus_entered(button: Label) -> void:
 	center()
 	
 	var index = button.get_index()
-	_update_episode_title(index)
-	preview.texture = images[index] if index < images.size() else null
+	episode_title.update(index)
+	preview.update(index)
 
 func _on_button_focus_exited(button) -> void:
 	button.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
@@ -74,7 +62,7 @@ func _on_return_button_pressed() -> void:
 
 func _on_level_button_pressed(button) -> void:
 	var index = button.get_index()
-	var episode_path = episode_pattern % index
+	var episode_path = Database.episode_pattern % index
 	
 	if FileAccess.file_exists(episode_path):
 		get_tree().change_scene_to_file(episode_path)
@@ -84,7 +72,6 @@ func _on_level_button_pressed(button) -> void:
 
 
 #===
-##tiso
 func center():
 	var focused_object = get_viewport().gui_get_focus_owner()
 	if not focused_object in button_container.get_children(): return
@@ -96,6 +83,7 @@ func center():
 	button_container.position.x = viewport_width - pivot_offset
 
 
-func _update_episode_title(index):
-	episode_title.text = titles[index] if index < titles.size() else "🔏"
-	if index >= unlocked_level: episode_title.text = "🔏"
+#getters
+func _get_title_screen() -> TitleScreen:
+	var title_screen = get_parent()
+	return title_screen if title_screen is TitleScreen else null

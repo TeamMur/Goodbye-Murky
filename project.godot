@@ -27,6 +27,7 @@ Effects="*res://singletons/Effects.tscn"
 Database="*res://singletons/Database.gd"
 Options="*res://singletons/Options.gd"
 AudioPlayer="*res://singletons/AudioPlayer.tscn"
+Savebase="*res://singletons/Savebase.gd"
 
 [display]
 

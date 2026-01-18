@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://2esoqd25qk6i"]
+[gd_scene load_steps=10 format=3 uid="uid://2esoqd25qk6i"]
 
 [ext_resource type="Theme" uid="uid://dj8e7w1ijp6tt" path="res://scenes/0_TitleScreen/title_theme.tres" id="1_m388d"]
 [ext_resource type="Script" uid="uid://c028pl6v05tb" path="res://scenes/0_TitleScreen/1_EpisodeMenu/episode_menu.gd" id="2_pmxvt"]
 [ext_resource type="Texture2D" uid="uid://54ekw3a34wie" path="res://assets/TEMP/rooms/room.png" id="3_c2kwl"]
+[ext_resource type="Script" uid="uid://dh8k4mr3axghj" path="res://scenes/0_TitleScreen/1_EpisodeMenu/preview.gd" id="4_c2kwl"]
 [ext_resource type="Shader" uid="uid://ccmwbxcq7qrbj" path="res://assets/shaders/pp_vhs.gdshader" id="4_egvbw"]
+[ext_resource type="Texture2D" uid="uid://xmmy3psvd00s" path="res://assets/TEMP/rooms/spr_chapter_10_0.png" id="5_jui58"]
+[ext_resource type="Texture2D" uid="uid://bkmsl75e5ymio" path="res://assets/TEMP/rooms/spr_room_bar_nes_0.png" id="6_ahslb"]
+[ext_resource type="Script" uid="uid://be8xja0eocnof" path="res://scenes/0_TitleScreen/1_EpisodeMenu/episode_title.gd" id="6_egvbw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iu5ar"]
 shader = ExtResource("4_egvbw")
@@ -46,8 +50,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_c2kwl")
 expand_mode = 2
+script = ExtResource("4_c2kwl")
+images = Array[Texture2D]([null, ExtResource("3_c2kwl"), ExtResource("5_jui58"), ExtResource("6_ahslb")])
+
+[node name="EpisodeTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "🔏"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_egvbw")
+titles = Array[String](["", "Вступление", "Начало", "История", "Заключение", "", "", "", ""])
 
 [node name="ShaderRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_iu5ar")
@@ -101,25 +127,6 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 12
 text = "ЭПИЗОДЫ"
 horizontal_alignment = 1
-
-[node name="EpisodeTitle" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -8.0
-offset_right = 40.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 12
-text = "🔏"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ButtonContainer" type="BoxContainer" parent="."]
 layout_mode = 1

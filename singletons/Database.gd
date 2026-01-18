@@ -1,6 +1,7 @@
 extends Node
 static var alias: String = "database"
 
+var episode_pattern = "res://scenes/1_EpisodeScreen/Episode_%d.tscn"
 
 #TITLE SCREEN
 const TITLE_SCREEN = preload("uid://bv2ak3akkk522")
