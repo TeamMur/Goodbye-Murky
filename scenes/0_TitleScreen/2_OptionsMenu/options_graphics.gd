@@ -11,12 +11,34 @@ extends BoxContainer
 #===
 func _ready() -> void:
 	_connect_signals()
+	_update()
 
 func _choised() -> void:
 	_button_focus_grab()
 	AudioPlayer.play_sfx(Database.SE_MENU_OPEN)
 
-
+func _update():
+	get_node("ModeContainer/Value").text = mode_states.get(0)["title"] if Options.get_window_mode() == DisplayServer.WINDOW_MODE_WINDOWED else mode_states.get(1)["title"]
+	mode_states["current_state"] = 0 if Options.get_window_mode() == DisplayServer.WINDOW_MODE_WINDOWED else 1
+	
+	var size_label = get_node("SizeContainer/Value")
+	match Options.get_window_size():
+		Options.small_window_size:
+			size_label.text = size_states.get(0)["title"]
+			size_states["current_state"] = 0
+		Options.medium_window_size:
+			size_label.text = size_states.get(1)["title"]
+			size_states["current_state"] = 1
+		Options.large_window_size:
+			size_label.text = size_states.get(2)["title"]
+			size_states["current_state"] = 2
+	
+	get_node("ShaderContainer/Value").text = shader_states["on"]["title"] if Effects.abberation.visible else shader_states["off"]["title"]
+	shader_states["current_state"] = "on" if Effects.abberation.visible else "off"
+	get_node("NoiseContainer/Value").text = noise_states["on"]["title"] if Effects.noise.visible else noise_states["off"]["title"]
+	noise_states["current_state"] = "on" if Effects.noise.visible else "off"
+	
+	
 #===
 func _try_to_call(event, callable) -> void:
 	var is_just_pressed = event.is_pressed() and not event.is_echo()
@@ -152,25 +174,25 @@ var size_states = {
 	"current_state": 1,
 	0: {"title": "640x360",   "func": func(): Options.make_window_small()},
 	1: {"title": "1280x720",  "func": func(): Options.make_window_medium()},
-	2: {"title": "1920x1080", "func": func(): Options.make_window_large()}
+	2: {"title": "1600x900", "func": func(): Options.make_window_large()}
 }
 
 var mode_states = {
 	"current_state": 0,
-	0: {"title": "Окно",         "func": func(): Options.windowed_window()},
+	0: {"title": "Окно",         "func": func(): Options.windowed_window(); size_states.get(size_states.get("current_state"))["func"].call()},
 	1: {"title": "Полный экран", "func": func(): Options.fullscreen_window()}
 }
 
 var shader_states = {
 	"current_state": "",
 	"on":  {"title": "On",   "func": func(): Effects.abberation_on()},
-	"off": {"title": "Off", "func": func(): Effects.abberation_off()}
+	"off": {"title": "Off", "func": func():  Effects.abberation_off()}
 }
 
 var noise_states = {
 	"current_state": "",
 	"on":  {"title": "On",   "func": func(): Effects.noise_on()},
-	"off": {"title": "Off", "func": func(): Effects.noise_off()
+	"off": {"title": "Off", "func": func():  Effects.noise_off()
 	}
 }
 #endregion

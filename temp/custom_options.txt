@@ -1,0 +1,1 @@
+{"accept_key":90,"ambient_volume":1.0,"cancel_key":88,"down_key":4194322,"guide_key":4194306,"left_key":4194319,"locale":"ru","master_volume":1.0,"music_volume":0.5,"noise":true,"pause_key":4194305,"right_key":4194321,"se_volume":0.5,"shader":true,"up_key":4194320,"window_mode":0,"window_size":0,"window_size_x":640,"window_size_y":360}

@@ -45,9 +45,9 @@ func _on_button_focus_entered(button: Label) -> void:
 func _on_button_focus_exited(button) -> void:
 	button.remove_theme_color_override("font_color")
 
-func _on_ru_button_pressed(): TranslationServer.set_locale("ru")
-func _on_en_button_pressed(): TranslationServer.set_locale("en")
-func _on_ch_button_pressed(): TranslationServer.set_locale("ch")
+func _on_ru_button_pressed(): Options.set_locale("ru")
+func _on_en_button_pressed(): Options.set_locale("en")
+func _on_ch_button_pressed(): Options.set_locale("ch")
 
 func _on_return_button_pressed() -> void:
 	var menu = _get_menu()

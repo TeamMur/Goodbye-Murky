@@ -52,7 +52,7 @@ func _on_audio_button_pressed(container):
 	container.get_node("Title").add_theme_color_override.bind("font_color", Color.BLACK).call_deferred()
 
 func _on_sound_button_pressed(): _on_audio_button_pressed(sound_button)
-func _on_music_button_pressed(): _on_audio_button_pressed(sound_button)
+func _on_music_button_pressed(): _on_audio_button_pressed(music_button)
 func _on_sound_slider_pressed(): sound_button.grab_focus.call_deferred()
 func _on_music_slider_pressed(): music_button.grab_focus.call_deferred()
 

@@ -62,13 +62,16 @@ func _on_lang_button_pressed()     -> void: _on_category_pressed(language_contai
 func _on_graphics_button_pressed() -> void: _on_category_pressed(graphics_container)
 func _on_sound_button_pressed()    -> void: _on_category_pressed(audio_container)
 func _on_controls_button_pressed() -> void: _on_category_pressed(controls_container)
-func _on_reset_button_pressed()    -> void: pass
+func _on_reset_button_pressed()    -> void:
+	Options.load_options(Savebase.load_dict("default_options"))
+
 
 func _on_return_button_pressed() -> void:
 	var title_screen = _get_title_screen()
 	if title_screen:
 		title_screen.change_screen_to_main_menu()
 		AudioPlayer.play_sfx(Database.SE_MENU_BACK)
+		Options.save_options()
 
 #===
 func _hide_containers(): for child in get_children(): if child is BoxContainer: child.hide()
